@@ -19,7 +19,6 @@ class AlbumsController < ApplicationController
   def create
     
     @album = current_user.albums.new(album_params)
-    #@album = @user.album.new(album_params)
     
   	if @album.save
   	  redirect_to @album
@@ -46,9 +45,8 @@ class AlbumsController < ApplicationController
   end
 
   private
+
   	def album_params
       params.require(:album).permit(:title,:cover)
   	end
-
-
 end
