@@ -1,0 +1,14 @@
+
+<%= form_with scope: :picture, url: album_pictures_path(@album), local: true do |form| %>
+ 
+
+  <p>
+    <%= form.file_field :image %>
+  </p>
+  <p>
+  	<%= form.label :tag_list,"Tags" %><br>
+    <%= form.text_field :tag_list %>
+  </p>
+ 
+  <%= submit_tag("Upload") %>
+<% end %>

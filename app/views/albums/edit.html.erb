@@ -1,0 +1,18 @@
+<h1>Edit album</h1>
+ 
+  <%= form_with model:@album, local: true, html: { multipart: true } do  |form| %>
+ 
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p><br>
+
+  <p>
+    <%= form.file_field :cover %>
+  </p>
+
+  <%= submit_tag("update") %>
+  <%= submit_tag("upload") %>
+
+ 
+<% end %>

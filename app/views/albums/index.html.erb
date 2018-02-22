@@ -1,0 +1,36 @@
+<%if current_user%>
+  <%= link_to 'Logout',destroy_user_session_path, method: :delete %>
+<%else%>
+  <%= link_to 'Login',user_session_path%>
+<%end%>
+<h1>Albums</h1>
+<%= link_to 'New Album',new_album_path %>
+<%= link_to 'My Album',users_path %>
+
+
+
+<h1>Listing albums</h1>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+  </tr>
+ 
+  <% @album.each do |album| %>
+    <tr>
+      <%if user_signed_in?%>
+      <td><%= image_tag album.cover.url(:medium) %></td>
+      <td><%= album.title %></td>
+      <td><%= link_to 'Show', album_path(album) %></td>
+      <td><%= link_to 'Edit', edit_album_path(album) %></td>
+      <td><%= link_to 'Destroy', album_path(album),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+      <%else%>
+      <td><%= image_tag album.cover.url(:medium) %></td>
+      <td><%= album.title %></td>
+      <%end%>
+    </tr>
+  <% end %>
+</table>
+<%= paginate @album %>

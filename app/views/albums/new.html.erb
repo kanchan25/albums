@@ -1,0 +1,10 @@
+<%= form_with model:@album, local: true do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+ 
+  <%= submit_tag("Create") %>
+<% end %>
+
+
