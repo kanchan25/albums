@@ -22,13 +22,14 @@
       <tr>
         <td>
           <%picture.comments.each do |comment|%>
-          <%=comment.comment%><br>
+          <%=comment.user&.email%>----><%=comment.comment%><br>
           <% end %>
         </td>
       </tr>
     </table>
     
-    <%= form_with scope: :comment, url: album_picture_comments_path(@album ,picture), local: true do |form| %>
+    <%= form_with scope: picture.comments.build, url: album_picture_comments_path(@album ,picture),  local: true do |form| %>
+      <%= form.hidden_field :picture_id%>
       <p>
         <%= form.text_field :comment %>
          <%= submit_tag("comment") %>

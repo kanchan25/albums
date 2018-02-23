@@ -4,6 +4,6 @@ class Picture < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   paginates_per 10
   acts_as_taggable_on :tags
-  has_many :comments
+  has_many :comments,dependent: :destroy
   
 end
