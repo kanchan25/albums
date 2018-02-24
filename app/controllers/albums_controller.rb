@@ -1,4 +1,6 @@
 class AlbumsController < ApplicationController
+  before_action :find_albums, :only =>[:show, :edit, :update, :destroy]
+
   def new
   	@album = Album.new
   end
@@ -8,16 +10,13 @@ class AlbumsController < ApplicationController
   end
 
   def show
-	  @album = Album.find(params[:id])
-    @pictures = @album.pictures.page params[:page]
+	  @pictures = @album.pictures.page params[:page]
   end
 
   def edit
-    @album = Album.find(params[:id])
   end
 
   def create
-    
     @album = current_user.albums.new(album_params)
     
   	if @album.save
@@ -28,8 +27,6 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    @album = Album.find(params[:id])
- 
     if @album.update(album_params)
       redirect_to @album
     else
@@ -38,7 +35,6 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    @album = Album.find(params[:id])
     @album.destroy
  
     redirect_to albums_path
@@ -49,4 +45,9 @@ class AlbumsController < ApplicationController
   	def album_params
       params.require(:album).permit(:title,:cover)
   	end
+
+    def find_albums
+       @album = Album.find(params[:id])
+    end
+    
 end
