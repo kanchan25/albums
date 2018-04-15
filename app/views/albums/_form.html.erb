@@ -1,0 +1,15 @@
+<%= form_with model:@album, local: true, html: { multipart: true } do  |form| %>
+ 
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p><br>
+
+  <p>
+    <%= form.file_field :cover %>
+  </p>
+
+  <%= form.submit %>
+
+ 
+<% end %>
